@@ -4,10 +4,10 @@
 
 ---
 
-## ✅ Current Status: Step 2 — Ollama Integration
+## ✅ Current Status: Step 3 — Voice Input
 
-The interface is live and connected to a local `qwen2.5:3b` model via Ollama.
-Responses stream token-by-token directly into the chat display.
+The app now supports push-to-talk voice recording via your microphone.
+Faster-Whisper (tiny model) transcribes the audio and auto-sends it to Ollama.
 
 ---
 
@@ -19,7 +19,8 @@ Jarvis/
 ├── requirements.txt      # Python dependencies
 ├── backend/
 │   ├── __init__.py
-│   └── ollama_client.py  # Streaming Ollama client with conversation history
+│   ├── ollama_client.py  # Streaming Ollama client with conversation history
+│   └── voice_input.py    # Microphone recorder + Whisper transcription
 ├── gui/
 │   ├── __init__.py
 │   ├── app.py            # Main window (JarvisApp)
@@ -70,7 +71,7 @@ python main.py
 |------|---------|--------|
 | 1 | GUI Shell | ✅ Done |
 | 2 | Ollama Integration (qwen2.5:3b) | ✅ Done |
-| 3 | Voice Input (faster-whisper tiny) | ⏳ Pending |
+| 3 | Voice Input (faster-whisper tiny) | ✅ Done |
 | 4 | Intent Detection (structured JSON) | ⏳ Pending |
 | 5 | File & Folder Actions | ⏳ Pending |
 | 6 | Browser Control | ⏳ Pending |
@@ -86,6 +87,8 @@ python main.py
 |-----|--------|
 | `Enter` | Send message |
 | `Esc` | Clear input field |
+| 🎙 click | Start recording (button turns red ⏹) |
+| ⏹ click | Stop recording → transcribe → auto-send to Ollama |
 
 ---
 
